@@ -1,23 +1,33 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import dts from "vite-plugin-dts";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
   return {
-    plugins: [react()],
+    plugins: [
+      react(),
+      dts({
+        insertTypesEntry: true,
+      }),
+    ],
     build: {
       lib: {
         entry: path.resolve(__dirname, "src/lib/index.ts"),
-        name: "React RRule Widget",
-        fileName: (format: string) => `react-rrule-widget.${format}.js`,
+        name: "ReactRRuleWidget",
+        formats: ["es", "cjs"],
+        fileName: (format) => `react-rrule-widget.${format}.js`,
       },
-      outDir: "dist",
+      //outDir: "dist",
     },
-    resolve: {
-      alias: {
-        // Définissez des alias si nécessaire
-        "react-rrule-widget": path.resolve(__dirname, "src/lib"),
+    rollupOptions: {
+      external: ["react", "react-dom"],
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
       },
     },
     base: "./",
