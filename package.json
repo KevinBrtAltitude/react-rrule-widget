@@ -1,6 +1,6 @@
 {
-  "name": "@altitude/react-rrule-widget",
-  "version": "1.0.0",
+  "name": "@kevinbrtaltitude/react-rrule-widget",
+  "version": "1.0.1",
   "type": "module",
   "author": "Kevin Brisset",
   "main": "./dist/react-rrule-widget.cjs.js",
@@ -11,7 +11,8 @@
       "import": "./dist/react-rrule-widget.es.js",
       "require": "./dist/react-rrule-widget.cjs.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./style.css": "./dist/style.css"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,10 @@
     "calendar"
   ],
   "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -72,5 +77,8 @@
     "typescript": "^5.2.2",
     "vite": "^5.1.4",
     "vite-plugin-dts": "^3.7.3"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/KevinBrtAltitude"
   }
 }
