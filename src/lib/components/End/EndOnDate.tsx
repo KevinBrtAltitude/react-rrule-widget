@@ -38,7 +38,7 @@ export default function EndOnDate({
         </RadioGroup>
       </div>
       <div className="ml-2 mr-2">
-        <Label className="capitalize">
+        <Label className="">
           {translateLabel(translations, "end.on_date")}
         </Label>
       </div>
