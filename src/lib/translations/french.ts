@@ -95,6 +95,7 @@ export default {
     never: "Jamais",
     after: "Fin après",
     on_date: "Fin le",
-    executions: "exécutions.",
+    executions: "exécution(s)",
+    pickADate: "Choisir une date",
   },
 };

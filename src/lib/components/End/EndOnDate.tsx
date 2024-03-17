@@ -10,15 +10,17 @@ export default function EndOnDate({
   onDate: { date, options },
   handleChange,
   translations,
+  locale,
 }: any) {
   const CustomCalendar = options.calendarComponent;
 
-  const locale = options.weekStartsOnSunday ? "en-ca" : "en-gb";
+  const curLocale =
+    locale === "fr" ? "fr-FR" : options.weekStartsOnSunday ? "en-ca" : "en-gb";
   const calendarAttributes = {
     "aria-label": translateLabel(translations, "end.tooltip"),
     value: date,
     dateFormat: DATE_TIME_FORMAT,
-    locale,
+    curLocale,
     readOnly: true,
   };
   const isActive = mode === "On date";
@@ -59,6 +61,8 @@ export default function EndOnDate({
         />
       ) : (
         <DatePicker
+          locale={locale}
+          translations={translations}
           onChange={(value: any) => {
             handleChange({
               target: {

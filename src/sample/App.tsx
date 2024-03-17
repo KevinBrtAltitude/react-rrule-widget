@@ -9,7 +9,6 @@ function App() {
   const [dates, setDates] = useState<any[]>([]);
 
   const handleChange = (newRRule: string) => {
-    console.log("RRUle changed", newRRule);
     setRrule(newRRule);
     const rruleObj = rrulestr(newRRule);
     setDates(rruleObj.all());
@@ -20,6 +19,7 @@ function App() {
       <ReactRRuleWidget
         onChange={handleChange}
         value={rrule}
+        locale="en"
         config={{ hideStart: false, count: 5 }}
       />
 

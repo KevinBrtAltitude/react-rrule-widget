@@ -10,13 +10,21 @@ import translations from "../translations";
 import FrequencyTabs from "./FrequencyTabs/FrequencyTabs";
 import End from "./End/End";
 
+const translationsConf = {
+  fr: translations.french,
+  en: translations.english,
+};
+
 export default function ReactRRuleWidget(props: ReactRRuleWidgetProps) {
   const prevRrule = useRef<string | null>(null);
   const [options, setOptions] = useState(
     configureState(props.config, props.calendarComponent)
   );
 
-  const curTranslations = props.translations ?? translations.french;
+  const locale = props.locale ?? "en";
+
+  const curTranslations =
+    props.translations ?? translationsConf[locale] ?? translations.english;
 
   useEffect(() => {
     if (options && prevRrule.current !== props.value) {
@@ -63,6 +71,7 @@ export default function ReactRRuleWidget(props: ReactRRuleWidgetProps) {
         {!config.hideStart && (
           <div>
             <Start
+              locale={locale}
               start={start}
               handleChange={handleChange}
               translations={curTranslations}
@@ -81,6 +90,7 @@ export default function ReactRRuleWidget(props: ReactRRuleWidgetProps) {
         {!config.hideEnd && (
           <div className="mt-4">
             <End
+              locale={locale}
               end={end}
               handleChange={handleChange}
               translations={curTranslations}
@@ -113,4 +123,5 @@ export interface ReactRRuleWidgetProps {
   onChange?: (rrule: string) => void;
   calendarComponent?: React.ReactElement;
   translations?: TranslationObject;
+  locale?: "en" | "fr";
 }

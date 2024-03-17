@@ -9,14 +9,15 @@ const StartOnDate = ({
   onDate: { date, options },
   handleChange,
   translations,
+  locale,
 }: any) => {
   const CustomCalendar = options.calendarComponent;
-  const locale = "fr-FR";
+  const curLocale = locale === "fr" ? "fr-FR" : "en-EN";
   const calendarAttributes = {
     "aria-label": translateLabel(translations, "start.tooltip"),
     value: date,
     dateFormat: DATE_TIME_FORMAT,
-    locale,
+    curLocale,
     readOnly: true,
   };
 
@@ -39,6 +40,7 @@ const StartOnDate = ({
         />
       ) : (
         <DatePicker
+          locale={locale}
           value={date}
           onChange={(value: any) => {
             handleChange({

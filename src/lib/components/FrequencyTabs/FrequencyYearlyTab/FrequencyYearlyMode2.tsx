@@ -38,7 +38,7 @@ export default function FrequencyYearlyMode2({
         )}
       </div>
       <div className="ml-2 mr-2">
-        <Label className="capitalize">
+        <Label className="capitalize w-max block">
           {translateLabel(translations, "repeat.yearly.on_the")}
         </Label>
       </div>

@@ -30,7 +30,7 @@ export default function FrequencyTab({
         defaultValue={options.frequency[0] ?? "Daily"}
         className="w-[450px] flex flex-col item-start mt-2 max-w-max"
       >
-        <TabsList>
+        <TabsList className="w-max">
           {options.frequency.map((key: string) => (
             <TabsTrigger
               name="repeat.frequency"

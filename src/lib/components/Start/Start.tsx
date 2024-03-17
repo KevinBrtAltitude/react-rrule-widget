@@ -9,14 +9,15 @@ interface IProps {
   };
   handleChange: (p: any) => void;
   translations: any;
+  locale: string;
 }
 
 export default function Start({
   start: { onDate },
   handleChange,
   translations,
+  locale,
 }: IProps) {
-  console.log("start on date", onDate);
   return (
     <div className="px-3">
       <div className="flex flex-col items-start">
@@ -26,6 +27,7 @@ export default function Start({
           </Label>
         </div>
         <StartOnDate
+          locale={locale}
           onDate={onDate}
           handleChange={handleChange}
           translations={translations}

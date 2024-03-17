@@ -7,6 +7,7 @@ export default function End({
   end: { mode, after, onDate },
   handleChange,
   translations,
+  locale,
 }: any) {
   return (
     <div className="px-3">
@@ -20,6 +21,7 @@ export default function End({
 
       <div>
         <EndOnDate
+          locale={locale}
           onDate={onDate}
           handleChange={handleChange}
           translations={translations}

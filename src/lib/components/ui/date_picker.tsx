@@ -9,9 +9,10 @@ import { Button } from "./button";
 import { Calendar } from "./calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
-import { fr } from "date-fns/locale";
+import { fr, enUS } from "date-fns/locale";
+import translateLabel from "../../utils/translateLabel";
 
-export function DatePicker({ onChange, value }: any) {
+export function DatePicker({ onChange, value, translations, locale }: any) {
   const [date, setDate] = React.useState<Date>(value);
 
   return (
@@ -26,9 +27,9 @@ export function DatePicker({ onChange, value }: any) {
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
           {date ? (
-            format(date, "PPP", { locale: fr })
+            format(date, "PPP", { locale: locale === "fr" ? fr : enUS })
           ) : (
-            <span>Choisir une date</span>
+            <span>{translateLabel(translations, "end.pickADate")}</span>
           )}
         </Button>
       </PopoverTrigger>
@@ -41,7 +42,7 @@ export function DatePicker({ onChange, value }: any) {
             onChange(e);
           }}
           initialFocus
-          locale={fr}
+          locale={locale === "fr" ? fr : enUS}
         />
       </PopoverContent>
     </Popover>

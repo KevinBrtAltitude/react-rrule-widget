@@ -19,10 +19,10 @@ export default function FrequencyYearlyMode1({
   hasMoreModes,
   handleChange,
   translations,
-  interval,
 }: any) {
   const daysInMonth = moment(on.month, "MMM").daysInMonth();
   const isActive = mode === "on";
+
   return (
     <div className="relative flex flex-row items-center">
       <div>

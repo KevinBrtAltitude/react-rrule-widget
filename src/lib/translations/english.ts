@@ -3,18 +3,18 @@ export default {
   invalid_rrule:
     "You provided an invalid RRule value to component. '%{value}' is not a correct RRule string.",
   months: {
-    jan: "Jan",
-    feb: "Feb",
-    mar: "Mar",
-    apr: "Apr",
+    jan: "January",
+    feb: "February",
+    mar: "March",
+    apr: "April",
     may: "May",
-    jun: "Jun",
-    jul: "Jul",
-    aug: "Aug",
-    sep: "Sep",
-    oct: "Oct",
-    nov: "Nov",
-    dec: "Dec",
+    jun: "June",
+    jul: "July",
+    aug: "August",
+    sep: "September",
+    oct: "October",
+    nov: "November",
+    dec: "December",
   },
   days_short: {
     mon: "Mon",
@@ -75,12 +75,12 @@ export default {
     },
     weekly: {
       label: "Weekly",
-      every: "every",
+      every: "Every",
       weeks: "week(s)",
     },
     daily: {
       label: "Daily",
-      every: "every",
+      every: "Every",
       days: "day(s)",
     },
     hourly: {
@@ -95,6 +95,7 @@ export default {
     never: "Never",
     after: "After",
     on_date: "On date",
-    executions: "executions.",
+    executions: "execution(s)",
+    pickADate: "Pick a date",
   },
 };
