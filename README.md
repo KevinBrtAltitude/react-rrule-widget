@@ -4,3 +4,5 @@
 
 Based on : React RRule Generator
 https://github.com/fafruch/react-rrule-generator
+
+UNDER CONSTRUCTION
