@@ -1,4 +1,7 @@
-const computeStartOnDate = (data: any, rruleObj: any) => {
+import { Options } from "rrule";
+import { Model } from "../Model";
+
+const computeStartOnDate = (data: Model, rruleObj: Partial<Options>) => {
   if (!rruleObj.dtstart) {
     return data.start.onDate.date;
   }

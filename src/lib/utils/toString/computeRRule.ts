@@ -4,8 +4,9 @@ import computeStart from "./computeStart";
 import computeRepeat from "./computeRepeat";
 import computeEnd from "./computeEnd";
 import computeOptions from "./computeOptions";
+import { Model } from "../Model";
 
-const computeRRule = ({ start, repeat, end, options }: any) => {
+const computeRRule = ({ start, repeat, end, options }: Model) => {
   const rruleObject = {
     ...computeStart(start),
     ...computeRepeat(repeat),

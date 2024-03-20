@@ -4,6 +4,7 @@ import computeRRuleToString from "./toString/computeRRule";
 import { DATE_TIME_FORMAT } from "../constants/index";
 import { ReactRRuleWidgetPropConfig } from "../components/ReactRRuleWidget";
 import { RRule } from "rrule";
+import { Model } from "./Model";
 
 const configureState = (
   config: ReactRRuleWidgetPropConfig = {},
@@ -17,7 +18,7 @@ const configureState = (
   const configureHideStart = () =>
     typeof config.hideStart === "undefined" ? true : config.hideStart;
 
-  const data = {
+  const data: Model = {
     start: {
       onDate: {
         date: moment().format(DATE_TIME_FORMAT),
@@ -75,7 +76,7 @@ const configureState = (
       },
       daily: {
         interval: 1,
-        wkst: RRule.MO,
+        wkst: RRule.MO.weekday,
       },
       hourly: {
         interval: 1,

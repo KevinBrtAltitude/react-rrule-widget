@@ -1,4 +1,7 @@
-const computeMonthlyOnTheWhich = (data: any, rruleObj: any) => {
+import { Options } from "rrule";
+import { Model } from "../Model";
+
+const computeMonthlyOnTheWhich = (data: Model, rruleObj: Partial<Options>) => {
   if (rruleObj.freq !== 1 || !rruleObj.bysetpos) {
     return data.repeat.monthly.onThe.which;
   }

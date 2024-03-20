@@ -3,6 +3,7 @@ import computeMonthly from "./computeMonthly";
 import computeWeekly from "./computeWeekly";
 import computeDaily from "./computeDaily";
 import computeHourly from "./computeHourly";
+import { Model } from "../Model";
 
 const computeRepeat = ({
   frequency,
@@ -11,7 +12,7 @@ const computeRepeat = ({
   weekly,
   daily,
   hourly,
-}: any) => {
+}: Model["repeat"]) => {
   switch (frequency) {
     case "Yearly": {
       return computeYearly(yearly);

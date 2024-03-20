@@ -8,6 +8,7 @@ import FrequencyMonthlyTab from "./FrequencyMonthlyTab/FrequencyMonthlyTab";
 import FrequencyYearlyTab from "./FrequencyYearlyTab/FrequencyYearlyTab";
 
 export default function FrequencyTab({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   repeat: { frequency, yearly, monthly, weekly, daily, hourly, options },
   handleChange,
   translations,

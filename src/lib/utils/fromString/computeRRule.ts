@@ -23,8 +23,9 @@ import computeHourlyInterval from "./computeHourlyInterval";
 import computeEndMode from "./computeEndMode";
 import computeEndAfter from "./computeEndAfter";
 import computeEndOnDate from "./computeEndOnDate";
+import { Model } from "../Model";
 
-const computeRRule = (data: any, rrule: string) => {
+const computeRRule = (data: Model, rrule: string): Model => {
   if (!rrule) {
     return data;
   }
@@ -84,6 +85,7 @@ const computeRRule = (data: any, rrule: string) => {
         },
         daily: {
           interval: computeDailyInterval(data, rruleObj),
+          wkst: undefined,
         },
         hourly: {
           interval: computeHourlyInterval(data, rruleObj),
@@ -91,7 +93,7 @@ const computeRRule = (data: any, rrule: string) => {
       },
       end: {
         ...data.end,
-        mode: computeEndMode(data, rruleObj),
+        mode: computeEndMode(rruleObj),
         after: computeEndAfter(data, rruleObj),
         onDate: {
           date: moment(computeEndOnDate(data, rruleObj)).format(

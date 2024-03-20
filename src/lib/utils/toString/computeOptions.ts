@@ -1,6 +1,7 @@
 import { RRule } from "rrule";
+import { Model } from "../Model";
 
-const computeOptions = ({ hideStart, weekStartsOnSunday }: any) => {
+const computeOptions = ({ hideStart, weekStartsOnSunday }: Model['options']) => {
   const options: any = {};
 
   if (hideStart) {
