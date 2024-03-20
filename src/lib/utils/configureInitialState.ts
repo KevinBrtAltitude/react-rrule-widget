@@ -14,7 +14,8 @@ const configureState = (
     config.frequency ? config.frequency[0] : "Daily";
   const configureYearly = () => config.yearly || "on";
   const configureMonthly = () => config.monthly || "on";
-  const configureEnd = () => (config.end ? config.end[0] : "After");
+  const configureEnd = (): Model["end"]["mode"] =>
+    config.end ? config.end : "After";
   const configureHideStart = () =>
     typeof config.hideStart === "undefined" ? true : config.hideStart;
 

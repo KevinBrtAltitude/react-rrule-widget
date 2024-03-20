@@ -11,7 +11,7 @@ function App() {
   const handleChange = (newRRule: string) => {
     setRrule(newRRule);
     const rruleObj = rrulestr(newRRule);
-    setDates(rruleObj.all());
+    setDates(rruleObj.all((_, index) => index < 20));
   };
 
   return (

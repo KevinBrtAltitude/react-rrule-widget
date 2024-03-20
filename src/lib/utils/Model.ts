@@ -69,7 +69,7 @@ export type Model = {
     };
   };
   end: {
-    mode: string;
+    mode: 'After' | 'On date' | 'Never' | undefined;
     after: number;
     onDate: {
       date: string;

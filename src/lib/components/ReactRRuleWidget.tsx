@@ -43,7 +43,9 @@ export default function ReactRRuleWidget(props: ReactRRuleWidgetProps) {
   }, []);
 
   const handleChange = useCallback(
-    ({ target }: any) => {
+    // represents a path to a value in the options.data object
+    // how to type this properly?
+    ({ target }: { target: { name: string; value: any } }) => {
       const newData = cloneDeep(options.data);
       set(newData, target.name, target.value);
       const rrule = computeRRuleToString(newData);

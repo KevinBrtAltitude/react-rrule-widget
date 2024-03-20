@@ -22,14 +22,14 @@ export default function FrequencyTab({
   const isOptionSelected = (option: string) => frequency === option;
 
   return (
-    <div className="px-3 flex flex-col item-start">
+    <div className="px-3 flex flex-col item-start w-full">
       <Label className="text-start">
         <strong>{translateLabel(translations, "repeat.label")}</strong>
       </Label>
       <Tabs
         value={frequency}
         defaultValue={options.frequency[0] ?? "Daily"}
-        className="w-[450px] flex flex-col item-start mt-2 max-w-max"
+        className="w-[450px] flex flex-col item-start mt-2 max-w-max w-full"
       >
         <TabsList className="w-max">
           {options.frequency.map((key: string) => (
