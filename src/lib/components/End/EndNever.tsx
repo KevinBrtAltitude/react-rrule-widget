@@ -1,3 +1,4 @@
+import { Model } from "@/lib/utils/Model";
 import translateLabel from "../../utils/translateLabel";
 import { Label } from "../ui/label";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
@@ -6,7 +7,11 @@ export default function EndNever({
   mode,
   handleChange,
   translations,
-}: any) {
+}: {
+  mode: Model["end"]["mode"];
+  handleChange: any;
+  translations: any;
+}) {
   const isActive = mode === "Never";
 
   return (

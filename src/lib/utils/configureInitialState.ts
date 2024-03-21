@@ -5,8 +5,10 @@ import { DATE_TIME_FORMAT } from "../constants/index";
 import { ReactRRuleWidgetPropConfig } from "../components/ReactRRuleWidget";
 import { RRule } from "rrule";
 import { Model } from "./Model";
+import computeRRule from "./fromString/computeRRule";
 
 const configureState = (
+  rule: string,
   config: ReactRRuleWidgetPropConfig = {},
   calendarComponent?: React.ReactElement
 ) => {
@@ -19,7 +21,7 @@ const configureState = (
   const configureHideStart = () =>
     typeof config.hideStart === "undefined" ? true : config.hideStart;
 
-  const data: Model = {
+  let data: Model = {
     start: {
       onDate: {
         date: moment().format(DATE_TIME_FORMAT),
@@ -108,6 +110,11 @@ const configureState = (
     },
     error: null,
   };
+
+  if (rule.trim().length > 0) {
+    // load the rule
+    data = computeRRule(data, rule);
+  }
 
   return {
     data,

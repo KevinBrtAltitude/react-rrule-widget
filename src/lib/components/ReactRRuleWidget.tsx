@@ -9,6 +9,7 @@ import "../styles/react-rrule-widget.css";
 import translations from "../translations";
 import FrequencyTabs from "./FrequencyTabs/FrequencyTabs";
 import End from "./End/End";
+import computeEnd from "../utils/toString/computeEnd";
 
 const translationsConf = {
   fr: translations.french,
@@ -18,7 +19,7 @@ const translationsConf = {
 export default function ReactRRuleWidget(props: ReactRRuleWidgetProps) {
   const prevRrule = useRef<string | null>(null);
   const [options, setOptions] = useState(
-    configureState(props.config, props.calendarComponent)
+    configureState(props.value, props.config, props.calendarComponent)
   );
 
   const locale = props.locale ?? "en";
