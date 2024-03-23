@@ -1,6 +1,6 @@
 {
   "name": "react-rrule-widget",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "type": "module",
   "author": "KevinBrt",
   "main": "./dist/react-rrule-widget.cjs.js",

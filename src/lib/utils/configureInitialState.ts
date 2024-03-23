@@ -112,7 +112,6 @@ const configureState = (
   };
 
   if (rule.trim().length > 0) {
-    console.log("RRULE", data, rule);
     // load the rule
     data = computeRRule(data, rule);
   }
