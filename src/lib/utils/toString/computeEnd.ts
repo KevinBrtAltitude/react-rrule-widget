@@ -1,6 +1,7 @@
 import moment from "moment";
+import { Model } from "../Model";
 
-const computeEnd = ({ mode, after, onDate: { date } }: any) => {
+const computeEnd = ({ mode, after, onDate: { date } }: Model["end"]) => {
   const end: any = {};
 
   if (mode === "After") {

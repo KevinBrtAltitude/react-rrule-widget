@@ -1,4 +1,7 @@
-const computeMonthlyMode = (data: any, rruleObj: any) => {
+import { Options } from "rrule";
+import { Model } from "../Model";
+
+const computeMonthlyMode = (data: Model, rruleObj: Partial<Options>) => {
   if (rruleObj.freq !== 1) {
     return data.repeat.monthly.mode;
   }

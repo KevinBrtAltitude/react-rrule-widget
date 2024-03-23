@@ -4,8 +4,11 @@ import computeRRuleToString from "./toString/computeRRule";
 import { DATE_TIME_FORMAT } from "../constants/index";
 import { ReactRRuleWidgetPropConfig } from "../components/ReactRRuleWidget";
 import { RRule } from "rrule";
+import { Model } from "./Model";
+import computeRRule from "./fromString/computeRRule";
 
 const configureState = (
+  rule: string,
   config: ReactRRuleWidgetPropConfig = {},
   calendarComponent?: React.ReactElement
 ) => {
@@ -13,11 +16,12 @@ const configureState = (
     config.frequency ? config.frequency[0] : "Daily";
   const configureYearly = () => config.yearly || "on";
   const configureMonthly = () => config.monthly || "on";
-  const configureEnd = () => (config.end ? config.end[0] : "After");
+  const configureEnd = (): Model["end"]["mode"] =>
+    config.end ? config.end : "After";
   const configureHideStart = () =>
     typeof config.hideStart === "undefined" ? true : config.hideStart;
 
-  const data = {
+  let data: Model = {
     start: {
       onDate: {
         date: moment().format(DATE_TIME_FORMAT),
@@ -75,7 +79,7 @@ const configureState = (
       },
       daily: {
         interval: 1,
-        wkst: RRule.MO,
+        wkst: RRule.MO.weekday,
       },
       hourly: {
         interval: 1,
@@ -106,6 +110,11 @@ const configureState = (
     },
     error: null,
   };
+
+  if (rule.trim().length > 0) {
+    // load the rule
+    data = computeRRule(data, rule);
+  }
 
   return {
     data,

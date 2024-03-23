@@ -1,4 +1,7 @@
-const computeFrequency = (data: any, rruleObj: any) => {
+import { Options } from "rrule";
+import { Model } from "../Model";
+
+const computeFrequency = (data: Model, rruleObj: Partial<Options>) => {
   switch (rruleObj.freq) {
     case 0: {
       return "Yearly";

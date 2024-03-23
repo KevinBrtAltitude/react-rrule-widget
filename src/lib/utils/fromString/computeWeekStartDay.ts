@@ -1,4 +1,7 @@
-const computeWeekStartDay = (data: any, rruleObj: any) => {
+import { Options } from "rrule";
+import { Model } from "../Model";
+
+const computeWeekStartDay = (data: Model, rruleObj: Partial<Options>) => {
   if (!rruleObj.wkst) {
     return data.options.weekStartsOnSunday;
   }

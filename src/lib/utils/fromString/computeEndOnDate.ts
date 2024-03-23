@@ -1,4 +1,7 @@
-const computeEndOnDate = (data: any, rruleObj: any) => {
+import { Options } from "rrule";
+import { Model } from "../Model";
+
+const computeEndOnDate = (data: Model, rruleObj: Partial<Options>) => {
   if (!rruleObj.until) {
     return data.end.onDate.date;
   }

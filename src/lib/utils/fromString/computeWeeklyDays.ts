@@ -1,4 +1,8 @@
-const computeWeeklyDays = (data: any, rruleObj: any) => {
+import { Options } from "rrule";
+import { Model } from "../Model";
+import { asArray } from "../asArray";
+
+const computeWeeklyDays = (data: Model, rruleObj: Partial<Options>) => {
   let weekdays = [];
 
   if (rruleObj.freq !== 2) {
@@ -6,7 +10,9 @@ const computeWeeklyDays = (data: any, rruleObj: any) => {
   }
 
   if (rruleObj.byweekday) {
-    weekdays = rruleObj.byweekday.map((weekday: any) => weekday.weekday);
+    weekdays = asArray(rruleObj.byweekday).map(
+      (weekday: any) => weekday.weekday
+    );
   }
 
   return {

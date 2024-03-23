@@ -1,14 +1,24 @@
+import { Locales } from "@/lib/translations";
+import { Model } from "@/lib/utils/Model";
 import translateLabel from "../../utils/translateLabel";
 import { Label } from "../ui/label";
 import EndAfter from "./EndAfter";
+import EndNever from "./EndNever";
 import EndOnDate from "./EndOnDate";
+
+type Props = {
+  end: Model["end"];
+  handleChange: any;
+  locale: Locales;
+  translations: any;
+};
 
 export default function End({
   end: { mode, after, onDate },
   handleChange,
   translations,
   locale,
-}: any) {
+}: Props) {
   return (
     <div className="px-3">
       <div className="flex flex-col items-start">
@@ -18,7 +28,13 @@ export default function End({
           </Label>
         </div>
       </div>
-
+      <div>
+        <EndNever
+          mode={mode}
+          handleChange={handleChange}
+          translations={translations}
+        />
+      </div>
       <div>
         <EndOnDate
           locale={locale}

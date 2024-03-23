@@ -1,8 +1,14 @@
-const computeYearlyOnTheWhich = (data: any, rruleObj: any) => {
+import { Options } from "rrule";
+import { Model } from "../Model";
+
+const computeYearlyOnTheWhich = (data: Model, rruleObj: Partial<Options>) => {
   if (rruleObj.freq !== 0 || !rruleObj.byweekday) {
     return data.repeat.yearly.onThe.which;
   }
-
+  // early exit if bysetpos is not set
+  if( !rruleObj.bysetpos ) {
+    return data.repeat.yearly.onThe.which;
+  }
   const bysetpos =
     typeof rruleObj.bysetpos === "number"
       ? rruleObj.bysetpos
