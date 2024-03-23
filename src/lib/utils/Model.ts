@@ -1,12 +1,10 @@
-
 export type Model = {
   start: {
     onDate: {
       date: string;
       options: {
         weekStartsOnSunday: boolean | undefined;
-        calendarComponent: React.ReactElement |
-        undefined;
+        calendarComponent: React.ReactElement | undefined;
       };
     };
   };
@@ -64,19 +62,21 @@ export type Model = {
       interval: number | undefined;
     };
     options: {
-      frequency: ("Yearly" | "Monthly" | "Weekly" | "Daily" | "Hourly")[] |
-      undefined;
+      frequency:
+        | ("Yearly" | "Monthly" | "Weekly" | "Daily" | "Hourly")[]
+        | undefined;
     };
   };
   end: {
-    mode: 'After' | 'On date' | 'Never' | undefined;
+    mode: "After" | "On date" | "Never" | undefined;
     after: number;
     onDate: {
       date: string;
       options: {
         weekStartsOnSunday: boolean | undefined;
-        calendarComponent?: React.ReactElement<any, string | React.JSXElementConstructor<any>> |
-        undefined;
+        calendarComponent?:
+          | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+          | undefined;
       };
     };
     options: {
@@ -87,6 +87,8 @@ export type Model = {
     hideStart: boolean;
     hideEnd: boolean | undefined;
     weekStartsOnSunday: boolean | undefined;
+    endOptions: ("never" | "on-date" | "after-executions")[];
+    count?: number;
   };
-  error: { message: Error | unknown; value: string; } | null;
+  error: { message: Error | unknown; value: string } | null;
 };

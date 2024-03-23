@@ -5,7 +5,7 @@ import "./global.css";
 import { rrulestr } from "rrule";
 
 function App() {
-  const [rrule, setRrule] = useState("FREQ=DAILY;INTERVAL=1;WKST=MO");
+  const [rrule, setRrule] = useState("");
   const [dates, setDates] = useState<any[]>([]);
 
   const handleChange = (newRRule: string) => {
@@ -19,8 +19,12 @@ function App() {
       <ReactRRuleWidget
         onChange={handleChange}
         value={rrule}
-        locale="en"
-        config={{ hideStart: true, count: 5 }}
+        locale="fr"
+        config={{
+          hideStart: false,
+          count: 10,
+          endOptions: ["on-date", "after-executions"],
+        }}
       />
 
       <div className="mt-12">

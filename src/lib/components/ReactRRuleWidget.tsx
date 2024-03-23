@@ -9,7 +9,6 @@ import "../styles/react-rrule-widget.css";
 import translations from "../translations";
 import FrequencyTabs from "./FrequencyTabs/FrequencyTabs";
 import End from "./End/End";
-import computeEnd from "../utils/toString/computeEnd";
 
 const translationsConf = {
   fr: translations.french,
@@ -97,6 +96,7 @@ export default function ReactRRuleWidget(props: ReactRRuleWidgetProps) {
               end={end}
               handleChange={handleChange}
               translations={curTranslations}
+              availableEndOptions={config.endOptions}
             />
           </div>
         )}
@@ -112,6 +112,7 @@ export interface ReactRRuleWidgetPropConfig {
   end?: "Never" | "After" | "On date";
   hideStart?: boolean;
   hideEnd?: boolean;
+  endOptions?: ("never" | "on-date" | "after-executions")[];
   weekStartsOnSunday?: boolean;
   count?: number;
 }

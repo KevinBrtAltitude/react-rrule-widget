@@ -15,7 +15,7 @@ export default function EndNever({
   const isActive = mode === "Never";
 
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex flex-row items-center mb-2">
       <div>
         <RadioGroup>
           <RadioGroupItem

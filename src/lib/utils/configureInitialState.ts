@@ -3,7 +3,7 @@ import moment from "moment";
 import computeRRuleToString from "./toString/computeRRule";
 import { DATE_TIME_FORMAT } from "../constants/index";
 import { ReactRRuleWidgetPropConfig } from "../components/ReactRRuleWidget";
-import { RRule } from "rrule";
+import { RRule, rrulestr } from "rrule";
 import { Model } from "./Model";
 import computeRRule from "./fromString/computeRRule";
 
@@ -20,7 +20,6 @@ const configureState = (
     config.end ? config.end : "After";
   const configureHideStart = () =>
     typeof config.hideStart === "undefined" ? true : config.hideStart;
-
   let data: Model = {
     start: {
       onDate: {
@@ -90,7 +89,7 @@ const configureState = (
     },
     end: {
       mode: configureEnd(),
-      after: 1,
+      after: config.count ?? 1,
       onDate: {
         date: moment().format(DATE_TIME_FORMAT),
         options: {
@@ -106,12 +105,14 @@ const configureState = (
       hideStart: configureHideStart(),
       hideEnd: config.hideEnd,
       weekStartsOnSunday: config.weekStartsOnSunday,
-      //count: config.count ?? 5,
+      endOptions: config.endOptions ?? ["never", "on-date", "after-executions"],
+      //count: config.count,
     },
     error: null,
   };
 
   if (rule.trim().length > 0) {
+    console.log("RRULE", data, rule);
     // load the rule
     data = computeRRule(data, rule);
   }
