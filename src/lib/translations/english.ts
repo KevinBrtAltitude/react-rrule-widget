@@ -65,6 +65,8 @@ export default {
       on: "on",
       on_the: "on the",
       of: "of",
+      every: "Every",
+      years: "year(s)",
     },
     monthly: {
       label: "Monthly",

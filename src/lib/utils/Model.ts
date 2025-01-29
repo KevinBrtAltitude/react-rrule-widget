@@ -12,6 +12,7 @@ export type Model = {
     frequency: string;
     yearly: {
       mode: string;
+      interval: number;
       on: {
         month: string;
         day: number;

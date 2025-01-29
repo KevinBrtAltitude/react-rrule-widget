@@ -10,6 +10,7 @@ import {
 } from "../../ui/select";
 import numericalFieldHandler from "../../../utils/numericalFieldHandler";
 import { DAYS, MONTHS } from "../../../../lib/constants";
+import { Input } from "../../ui/input";
 
 export default function FrequencyYearlyMode2({
   mode,
@@ -21,7 +22,7 @@ export default function FrequencyYearlyMode2({
 }: any) {
   const isActive = mode === "on the";
   return (
-    <div className="relative flex flex-row items-center">
+    <div className="relative flex flex-row items-center flex-wrap gap-y-2">
       <div>
         {hasMoreModes && (
           <RadioGroup>
@@ -121,6 +122,24 @@ export default function FrequencyYearlyMode2({
           ))}
         </SelectContent>
       </Select>
+      <div className="ml-2 mr-2">
+        <Label className="lowercase">
+          {translateLabel(translations, "repeat.yearly.every")}
+        </Label>
+      </div>
+      <Input
+        value={interval}
+        className="w-[50px] text-sm ml-1 mr-1"
+        type="number"
+        name="repeat.yearly.interval"
+        min={0}
+        onChange={numericalFieldHandler(handleChange)}
+      />
+      <div className="ml-2 mr-2">
+        <Label className="lowercase">
+          {translateLabel(translations, "repeat.yearly.years")}
+        </Label>
+      </div>
     </div>
   );
 }

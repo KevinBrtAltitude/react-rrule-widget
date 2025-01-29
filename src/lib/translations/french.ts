@@ -65,6 +65,8 @@ export default {
       on: "le",
       on_the: "le",
       of: "de",
+      every: "Tous les",
+      years: "an(s)",
     },
     monthly: {
       label: "Mensuelle",

@@ -12,6 +12,7 @@ import numericalFieldHandler from "../../../utils/numericalFieldHandler";
 import moment from "moment";
 import { MONTHS } from "../../../constants";
 import { range } from "lodash";
+import { Input } from "../../ui/input";
 
 export default function FrequencyYearlyMode1({
   mode,
@@ -19,27 +20,26 @@ export default function FrequencyYearlyMode1({
   hasMoreModes,
   handleChange,
   translations,
+  interval,
 }: any) {
   const daysInMonth = moment(on.month, "MMM").daysInMonth();
   const isActive = mode === "on";
 
   return (
-    <div className="relative flex flex-row items-center">
-      <div>
-        {hasMoreModes && (
-          <RadioGroup>
-            <RadioGroupItem
-              onClick={() => {
-                handleChange({
-                  target: { name: "repeat.yearly.mode", value: "on" },
-                });
-              }}
-              value="on"
-              checked={isActive}
-            />
-          </RadioGroup>
-        )}
-      </div>
+    <div className="flex flex-row items-center flex-wrap gap-y-2">
+      {hasMoreModes && (
+        <RadioGroup>
+          <RadioGroupItem
+            onClick={() => {
+              handleChange({
+                target: { name: "repeat.yearly.mode", value: "on" },
+              });
+            }}
+            value="on"
+            checked={isActive}
+          />
+        </RadioGroup>
+      )}
       <div className="ml-2 mr-2">
         <Label className="capitalize">
           {translateLabel(translations, "repeat.yearly.on_the")}
@@ -86,6 +86,25 @@ export default function FrequencyYearlyMode1({
           ))}
         </SelectContent>
       </Select>
+
+      <div className="ml-2 mr-2">
+        <Label className="lowercase">
+          {translateLabel(translations, "repeat.yearly.every")}
+        </Label>
+      </div>
+      <Input
+        value={interval}
+        className="w-[50px] text-sm ml-1 mr-1"
+        type="number"
+        name="repeat.yearly.interval"
+        min={0}
+        onChange={numericalFieldHandler(handleChange)}
+      />
+      <div className="ml-2 mr-2">
+        <Label className="lowercase">
+          {translateLabel(translations, "repeat.yearly.years")}
+        </Label>
+      </div>
     </div>
   );
 }

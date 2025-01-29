@@ -12,7 +12,7 @@ export default function FrequencyDailyTab({
     <div className="flex flex-row items-center">
       <Label>{translateLabel(translations, "repeat.daily.every")}</Label>
       <Input
-        value={interval ?? 1}
+        value={interval}
         className="w-[50px] text-sm ml-3 mr-3"
         type="number"
         name="repeat.daily.interval"

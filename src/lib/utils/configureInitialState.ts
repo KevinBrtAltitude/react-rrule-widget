@@ -34,6 +34,7 @@ const configureState = (
       frequency: configureFrequency(),
       yearly: {
         mode: configureYearly(),
+        interval: 1,
         on: {
           month: "Jan",
           day: 1,
