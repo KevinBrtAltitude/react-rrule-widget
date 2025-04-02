@@ -10,7 +10,7 @@ export default function FrequencyMonthlyTab({
   const isTheOnlyOneMode = (option: string) => options.modes === option;
   const isOptionAvailable = (option: string) =>
     !options.modes || isTheOnlyOneMode(option);
-
+console.log('MODE', mode);
   return (
     <div className="flex flex-col items-start">
       <div>

@@ -1,14 +1,9 @@
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
 import translateLabel from "../../../utils/translateLabel";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../ui/select";
+import { Combobox } from "../../ui/combobox";
 import numericalFieldHandler from "../../../utils/numericalFieldHandler";
+import { Select, SelectValue, SelectTrigger, SelectContent, SelectItem } from "../../ui/select";
 
 export default function FrequencyMonthlyMode1({
   mode,
@@ -19,6 +14,20 @@ export default function FrequencyMonthlyMode1({
   interval,
 }: any) {
   const isActive = mode === "on";
+
+  // Options for days of month
+  const dayOptions = [...Array(31)].map((_, i) => ({
+    value: (i + 1).toString(),
+    label: (i + 1).toString()
+  }));
+
+  // Handle multiple values for day
+  const handleDayChange = (value: string | string[]) => {
+    handleChange({
+      target: { name: "repeat.monthly.on.day", value }
+    });
+  };
+
   return (
     <div className="relative flex flex-row items-center">
       <div>
@@ -41,26 +50,15 @@ export default function FrequencyMonthlyMode1({
           {translateLabel(translations, "repeat.monthly.on_the")}
         </Label>
       </div>
-      <Select
-        name="repeat.monthly.on.day"
-        value={on.day + ""}
-        onValueChange={(value) =>
-          numericalFieldHandler(handleChange)({
-            target: { name: "repeat.monthly.on.day", value },
-          })
-        }
-      >
-        <SelectTrigger className="w-[60px] text-sm">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          {[...new Array(31)].map((day, i) => (
-            <SelectItem key={i} value={i + 1 + ""}>
-              {i + 1}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <Combobox
+        options={dayOptions}
+        className="w-[80px] text-sm"
+        value={Array.isArray(on.day) ? on.day.map((d: number | string) => d.toString()) : [on.day.toString()]}
+        onChange={handleDayChange}
+        title={translateLabel(translations, "days.day")}
+        multiple={true}
+        hasHeader={false}
+      />
       <div className="ml-2 mr-2">
         <Label className="lowercase">
           {translateLabel(translations, "repeat.monthly.every")}
@@ -79,8 +77,8 @@ export default function FrequencyMonthlyMode1({
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          {[...new Array(12)].map((day, i) => (
-            <SelectItem key={i} value={i + 1 + ""}>
+          {[...new Array(12)].map((_, i) => (
+            <SelectItem key={i} value={(i + 1) + ""}>
               {i + 1}
             </SelectItem>
           ))}

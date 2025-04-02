@@ -1,13 +1,7 @@
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
 import translateLabel from "../../../utils/translateLabel";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../ui/select";
+import { Combobox } from "../../ui/combobox";
 import numericalFieldHandler from "../../../utils/numericalFieldHandler";
 import moment from "moment";
 import { MONTHS } from "../../../constants";
@@ -24,6 +18,32 @@ export default function FrequencyYearlyMode1({
 }: any) {
   const daysInMonth = moment(on.month, "MMM").daysInMonth();
   const isActive = mode === "on";
+
+  // Options pour les jours du mois
+  const dayOptions = range(0, daysInMonth).map(i => ({
+    value: (i + 1).toString(),
+    label: (i + 1).toString()
+  }));
+
+  // Options pour les mois
+  const monthOptions = MONTHS.map(month => ({
+    value: month,
+    label: translateLabel(translations, `months.${month.toLowerCase()}`)
+  }));
+
+  // Gérer les valeurs multiples pour day
+  const handleDayChange = (value: string | string[]) => {
+    handleChange({
+      target: { name: "repeat.yearly.on.day", value }
+    });
+  };
+
+  // Gérer les valeurs multiples pour month
+  const handleMonthChange = (value: string | string[]) => {
+    handleChange({
+      target: { name: "repeat.yearly.on.month", value }
+    });
+  };
 
   return (
     <div className="flex flex-row items-center flex-wrap gap-y-2">
@@ -45,47 +65,29 @@ export default function FrequencyYearlyMode1({
           {translateLabel(translations, "repeat.yearly.on_the")}
         </Label>
       </div>
-      <Select
-        name="repeat.yearly.on.day"
-        value={on.day + ""}
-        onValueChange={(value) =>
-          numericalFieldHandler(handleChange)({
-            target: { name: "repeat.yearly.on.day", value },
-          })
+      <Combobox
+        options={dayOptions}
+        className="w-[80px] text-sm"
+        value={on.day.map((item: string | number) => item.toString())}
+        onChange={(values: string[]) => 
+          handleDayChange(values)
         }
-      >
-        <SelectTrigger className="w-[60px] text-sm">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          {range(0, daysInMonth).map((i) => (
-            <SelectItem key={i} value={i + 1 + ""}>
-              {i + 1}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+        title={translateLabel(translations, "days.day")}
+        multiple={true}
+        hasHeader={false}
+      />
 
-      <Select
-        name="repeat.yearly.on.month"
-        value={on.month + ""}
-        onValueChange={(value) =>
-          numericalFieldHandler(handleChange)({
-            target: { name: "repeat.yearly.on.month", value },
-          })
+      <Combobox
+        options={monthOptions}
+        className="w-[120px] text-sm ml-2"
+        value={on.month.map((item: string) => item.toString())}
+        onChange={(values: string[]) => 
+          handleMonthChange(values)
         }
-      >
-        <SelectTrigger className="w-[120px] text-sm ml-2">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          {MONTHS.map((month) => (
-            <SelectItem key={month} value={month}>
-              {translateLabel(translations, `months.${month.toLowerCase()}`)}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+        title={translateLabel(translations, "months.month")}
+        multiple={true}
+        hasHeader={false}
+      />
 
       <div className="ml-2 mr-2">
         <Label className="lowercase">

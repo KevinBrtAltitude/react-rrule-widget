@@ -1,20 +1,28 @@
 import { Options } from "rrule";
 import { MONTHS } from "../../constants/index";
 import { Model } from "../Model";
+import { asArray } from "../asArray";
 
 const computeYearlyOnMonth = (data: Model, rruleObj: Partial<Options>) => {
   if (rruleObj.freq !== 0 || !rruleObj.bymonthday) {
-    return data.repeat.yearly.on.month;
+    // S'assurer que la valeur par défaut est toujours un tableau
+    return Array.isArray(data.repeat.yearly.on.month) 
+      ? data.repeat.yearly.on.month 
+      : [data.repeat.yearly.on.month];
   }
-  // early exit.
-  if( ! rruleObj.bymonth){
-    return data.repeat.yearly.on.month;
+  
+  // Sortie anticipée si bymonth n'est pas défini
+  if (!rruleObj.bymonth) {
+    return Array.isArray(data.repeat.yearly.on.month) 
+      ? data.repeat.yearly.on.month 
+      : [data.repeat.yearly.on.month];
   }
-  if (typeof rruleObj.bymonth === "number") {
-    return MONTHS[rruleObj.bymonth - 1];
-  }
-  // TODO: Is this safe to assume ?
-  return MONTHS[rruleObj.bymonth[0] - 1];
+  
+  // Convertir bymonth en tableau pour traitement uniforme
+  const bymonthArray = asArray(rruleObj.bymonth);
+  
+  // Convertir chaque nombre de mois en nom de mois (Jan, Feb, etc.)
+  return bymonthArray.map(monthNum => MONTHS[monthNum - 1]);
 };
 
 export default computeYearlyOnMonth;

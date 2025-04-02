@@ -1,0 +1,13 @@
+div[cmdk-group-heading=""] {
+  background-color: #f5f5f5;
+  font-weight: bold !important;
+  padding: 5px 10px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+
+.combobox-element-selected {
+    background-color: #f1f5f9 !important;
+}

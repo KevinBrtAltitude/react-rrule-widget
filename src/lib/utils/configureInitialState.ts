@@ -36,13 +36,13 @@ const configureState = (
         mode: configureYearly(),
         interval: 1,
         on: {
-          month: "Jan",
-          day: 1,
+          month: ["Jan"],
+          day: [1],
         },
         onThe: {
-          month: "Jan",
-          day: "Monday",
-          which: "First",
+          month: ["Jan"],
+          day: ["Monday"],
+          which: ["First"],
         },
         options: {
           modes: config.yearly,
@@ -52,11 +52,11 @@ const configureState = (
         mode: configureMonthly(),
         interval: 1,
         on: {
-          day: 1,
+          day: [1],
         },
         onThe: {
-          day: "Monday",
-          which: "First",
+          day: ["Monday"],
+          which: ["First"],
         },
         options: {
           modes: config.monthly,

@@ -14,13 +14,13 @@ export type Model = {
       mode: string;
       interval: number;
       on: {
-        month: string;
-        day: number;
+        month: string | string[];
+        day: number | number[] | string | string[];
       };
       onThe: {
-        month: string;
-        day: string;
-        which: string;
+        month: string | string[];
+        day: string | string[];
+        which: string | string[];
       };
       options: {
         modes: string | undefined;
@@ -30,11 +30,11 @@ export type Model = {
       mode: string;
       interval: number | undefined;
       on: {
-        day: number;
+        day: number | number[] | string | string[];
       };
       onThe: {
-        day: string;
-        which: string;
+        day: string | string[];
+        which: string | string[];
       };
       options: {
         modes: string | undefined;

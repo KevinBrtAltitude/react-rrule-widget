@@ -1,13 +1,7 @@
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
 import translateLabel from "../../../utils/translateLabel";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../ui/select";
+import { Combobox } from "../../ui/combobox";
 import numericalFieldHandler from "../../../utils/numericalFieldHandler";
 import { DAYS, MONTHS } from "../../../../lib/constants";
 import { Input } from "../../ui/input";
@@ -21,6 +15,49 @@ export default function FrequencyYearlyMode2({
   interval,
 }: any) {
   const isActive = mode === "on the";
+
+  // Options pour le combobox "which" (Premier, Deuxième, etc.)
+  const whichOptions = [
+    { value: "First", label: translateLabel(translations, "numerals.first") },
+    { value: "Second", label: translateLabel(translations, "numerals.second") },
+    { value: "Third", label: translateLabel(translations, "numerals.third") },
+    { value: "Fourth", label: translateLabel(translations, "numerals.fourth") },
+    { value: "Last", label: translateLabel(translations, "numerals.last") },
+  ];
+
+  // Options pour les jours de la semaine
+  const dayOptions = DAYS.map(day => ({
+    value: day,
+    label: translateLabel(translations, `days.${day.toLowerCase()}`)
+  }));
+
+  // Options pour les mois
+  const monthOptions = MONTHS.map(month => ({
+    value: month,
+    label: translateLabel(translations, `months.${month.toLowerCase()}`)
+  }));
+
+  // Gérer les valeurs multiples pour which
+  const handleWhichChange = (value: string | string[]) => {
+    handleChange({
+      target: { name: "repeat.yearly.onThe.which", value }
+    });
+  };
+
+  // Gérer les valeurs multiples pour day
+  const handleDayChange = (value: string | string[]) => {
+    handleChange({
+      target: { name: "repeat.yearly.onThe.day", value }
+    });
+  };
+
+  // Gérer les valeurs multiples pour month
+  const handleMonthChange = (value: string | string[]) => {
+    handleChange({
+      target: { name: "repeat.yearly.onThe.month", value }
+    });
+  };
+
   return (
     <div className="relative flex flex-row items-center flex-wrap gap-y-2">
       <div>
@@ -44,57 +81,25 @@ export default function FrequencyYearlyMode2({
         </Label>
       </div>
 
-      <Select
-        name="repeat.yearly.onThe.which"
-        value={onThe.which + ""}
-        onValueChange={(value) =>
-          numericalFieldHandler(handleChange)({
-            target: { name: "repeat.yearly.onThe.which", value },
-          })
-        }
-      >
-        <SelectTrigger className="w-[100px] text-sm">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem key={1} value="First">
-            {translateLabel(translations, "numerals.first")}
-          </SelectItem>
-          <SelectItem key={2} value="Second">
-            {translateLabel(translations, "numerals.second")}
-          </SelectItem>
-          <SelectItem key={3} value="Third">
-            {translateLabel(translations, "numerals.third")}
-          </SelectItem>
-          <SelectItem key={4} value="Fourth">
-            {translateLabel(translations, "numerals.fourth")}
-          </SelectItem>
-          <SelectItem key={5} value="Last">
-            {translateLabel(translations, "numerals.last")}
-          </SelectItem>
-        </SelectContent>
-      </Select>
+      <Combobox
+        options={whichOptions}
+        className="w-[140px] text-sm"
+        value={onThe.which}
+        onChange={handleWhichChange}
+        title={translateLabel(translations, "numerals.ordinal")}
+        multiple={true}
+        hasHeader={false}
+      />
 
-      <Select
-        name="repeat.yearly.onThe.day"
-        value={onThe.day + ""}
-        onValueChange={(value) =>
-          numericalFieldHandler(handleChange)({
-            target: { name: "repeat.yearly.onThe.day", value },
-          })
-        }
-      >
-        <SelectTrigger className="w-[100px] text-sm ml-2">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          {DAYS.map((day) => (
-            <SelectItem key={day} value={day}>
-              {translateLabel(translations, `days.${day.toLowerCase()}`)}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <Combobox
+        options={dayOptions}
+        className="w-[140px] text-sm ml-2"
+        value={onThe.day}
+        onChange={handleDayChange}
+        title={translateLabel(translations, "days.day")}
+        multiple={true}
+        hasHeader={false}
+      />
 
       <div className="ml-2 mr-2">
         <Label className="lowercase">
@@ -102,26 +107,16 @@ export default function FrequencyYearlyMode2({
         </Label>
       </div>
 
-      <Select
-        name="repeat.yearly.onThe.month"
-        value={onThe.month + ""}
-        onValueChange={(value) =>
-          numericalFieldHandler(handleChange)({
-            target: { name: "repeat.yearly.onThe.month", value },
-          })
-        }
-      >
-        <SelectTrigger className="w-[120px] text-sm">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          {MONTHS.map((month) => (
-            <SelectItem key={month} value={month}>
-              {translateLabel(translations, `months.${month.toLowerCase()}`)}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <Combobox
+        options={monthOptions}
+        className="w-[120px] text-sm"
+        value={onThe.month}
+        onChange={handleMonthChange}
+        title={translateLabel(translations, "months.month")}
+        multiple={true}
+        hasHeader={false}
+      />
+      
       <div className="ml-2 mr-2">
         <Label className="lowercase">
           {translateLabel(translations, "repeat.yearly.every")}

@@ -110,7 +110,7 @@ const computeRRule = (data: Model, rrule: string): Model => {
         weekStartsOnSunday: computeWeekStartDay(data, rruleObj),
       },
       error: null,
-    };
+    } as Model;
   } catch (e) {
     return { ...data, error: { value: rrule, message: e } };
   }
