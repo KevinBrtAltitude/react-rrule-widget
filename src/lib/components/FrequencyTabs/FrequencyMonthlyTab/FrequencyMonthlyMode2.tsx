@@ -27,12 +27,6 @@ export default function FrequencyMonthlyMode2({
 
   // Options for days (Monday, Tuesday, etc.)
   const dayOptions = [
-    { value: "Day", label: translateLabel(translations, "days.day") },
-    { value: "Weekday", label: translateLabel(translations, "days.weekday") },
-    {
-      value: "Weekend day",
-      label: translateLabel(translations, "days.weekend_day"),
-    },
     ...DAYS.map((day: string) => ({
       value: day,
       label: translateLabel(translations, `days.${day.toLowerCase()}`),

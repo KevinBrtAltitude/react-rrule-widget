@@ -56,7 +56,7 @@ const Combobox = ({
   className = "",
   value,
   disabled = false,
-  canUnselect = true,
+  canUnselect = false,
   multiple = false,
   selectedValueFormatter
 }: IProps) => {
